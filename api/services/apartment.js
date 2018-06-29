@@ -57,6 +57,31 @@ var getRandom = (index, masonry, floors, zone) => {
 	return Math.round(valor * 10000) / 10000;
 }
 
+var getZona = (posicion, zone) => {
+
+	var tiempo = new Float32Array([.05, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 5]);
+	var zona = zone;
+
+	var c = new Float32Array([0, .08, .16, .2]);
+	var a0 = new Float32Array([0, .02, .04, .05]);
+	var ta = new Float32Array([0, .2, .3, .6]);
+	var tb = new Float32Array([0, .6, 1.5, 2.9]);
+	var r = new Float32Array([0, .5, .66, 1]);
+
+
+	if (0 <= tiempo[posicion] && tiempo[posicion] <= ta[zona]) {
+		var valor = (a0[zona] + (c[zona] - a0[zona])) * (tiempo[posicion] / ta[zona]);
+	}
+	else if (ta[zona] < tiempo[posicion] && tiempo[posicion] <= tb[zona]) {
+		var valor = c[zona];
+	}
+	else {
+		var valor = Math.pow((tb[zona] / tiempo[posicion]), r[zona]) * c[zona];
+	}
+
+	return Math.round(valor * 10000) / 10000;
+}
+
 var vulnerabilityGraphService = (masonry, floors, zone) => {
     var simulations = []
     var simulation_initial = .1
@@ -69,4 +94,44 @@ var vulnerabilityGraphService = (masonry, floors, zone) => {
     return simulations
 }
 
-export { vulnerabilityGraphService }
+var spectrumGraphService = (zone) => {
+    return [
+		{ simulation: .05, spectrum: getZona(0, zone) },
+		{ simulation: .1, spectrum: getZona(1, zone) },
+		{ simulation: .2, spectrum: getZona(2, zone) },
+		{ simulation: .3, spectrum: getZona(3, zone) },
+		{ simulation: .4, spectrum: getZona(4, zone) },
+		{ simulation: .5, spectrum: getZona(5, zone) },
+		{ simulation: .6, spectrum: getZona(6, zone) },
+		{ simulation: .7, spectrum: getZona(7, zone) },
+		{ simulation: .8, spectrum: getZona(8, zone) },
+		{ simulation: .9, spectrum: getZona(9, zone) },
+		{ simulation: 1, spectrum: getZona(10, zone) },
+		{ simulation: 1.2, spectrum: getZona(11, zone) },
+		{ simulation: 1.3, spectrum: getZona(12, zone) },
+		{ simulation: 1.4, spectrum: getZona(13, zone) },
+		{ simulation: 1.5, spectrum: getZona(14, zone) },
+		{ simulation: 1.6, spectrum: getZona(15, zone) },
+		{ simulation: 1.7, spectrum: getZona(16, zone) },
+		{ simulation: 1.8, spectrum: getZona(17, zone) },
+		{ simulation: 1.9, spectrum: getZona(18, zone) },
+		{ simulation: 2, spectrum: getZona(19, zone) },
+		{ simulation: 2.2, spectrum: getZona(20, zone) },
+		{ simulation: 2.4, spectrum: getZona(21, zone) },
+		{ simulation: 2.6, spectrum: getZona(22, zone) },
+		{ simulation: 2.8, spectrum: getZona(23, zone) },
+		{ simulation: 3, spectrum: getZona(24, zone) },
+		{ simulation: 3.2, spectrum: getZona(25, zone) },
+		{ simulation: 3.4, spectrum: getZona(26, zone) },
+		{ simulation: 3.6, spectrum: getZona(27, zone) },
+		{ simulation: 3.8, spectrum: getZona(28, zone) },
+		{ simulation: 4, spectrum: getZona(29, zone) },
+		{ simulation: 4.2, spectrum: getZona(30, zone) },
+		{ simulation: 4.4, spectrum: getZona(31, zone) },
+		{ simulation: 4.6, spectrum: getZona(32, zone) },
+		{ simulation: 4.8, spectrum: getZona(33, zone) },
+		{ simulation: 5, spectrum: getZona(34, zone) }
+	];
+}
+
+export { vulnerabilityGraphService, spectrumGraphService }

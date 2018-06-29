@@ -1,7 +1,11 @@
-import { vulnerabilityGraphService } from '../services/apartment'
+import { vulnerabilityGraphService, spectrumGraphService } from '../services/apartment'
 
 var getVulnerabilityGraphData = ({masonry, floors, zone}) => {
     return vulnerabilityGraphService(masonry, floors, zone)
 }
 
-export { getVulnerabilityGraphData }
+var getSpectrumGraphData = ({zone}) => {
+    return spectrumGraphService(zone)
+}
+
+export { getVulnerabilityGraphData, getSpectrumGraphData }
