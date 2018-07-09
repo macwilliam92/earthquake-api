@@ -2,8 +2,8 @@ import { roundToTwo } from '../utils/mathematical';
 
 const getRandom = (index, masonry, floors) => {
   const posicion = parseInt(index, 10);
-  const piso = floors;
-  const material = masonry;
+  const piso = parseInt(floors, 10);
+  const material = parseInt(masonry, 10);
 
   const valale = new Float32Array(
     [0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7],
@@ -22,7 +22,7 @@ const getRandom = (index, masonry, floors) => {
   if (material === 3) {
     valor = (1
       - Math.exp(((-1 * A3[piso]) * Math.pow((valale[posicion] / samax3[piso]), M3[piso]))));
-  } else if (material == 2) {
+  } else if (material === 2) {
     valor = (1 - Math.exp(((-1 * A[piso]) * Math.pow((valale[posicion] / samax[piso]), M[piso]))));
   }
 
@@ -30,9 +30,9 @@ const getRandom = (index, masonry, floors) => {
 };
 
 const getVulnerabilityInd = (masonry, floors, zone) => {
-  const piso = floors;
-  const material = masonry;
-  const zona = zone;
+  const piso = parseInt(floors, 10);
+  const material = parseInt(masonry, 10);
+  const zona = parseInt(zone, 10);
 
   const M = new Float32Array([0, 4.01, 4.18, 4.64, 5.19, 5.38]);
   const A = new Float32Array([0, 3.68, 3.71, 3.80, 3.91, 3.95]);
@@ -64,7 +64,7 @@ const getVulnerabilityInd = (masonry, floors, zone) => {
     }
 
     InD = (1 - Math.exp(((-1 * A3[piso]) * Math.pow((valorI / samax3[piso]), M3[piso]))));
-  } else if (material == 2) {
+  } else if (material === 2) {
     if (T0[piso] >= 0 && T0[piso] <= ta[zona]) {
       valorI = (a0[zona] + (c[zona] - a0[zona])) * (T0[piso] / ta[zona]);
     } else if (ta[zona] < T0[piso] && T03[piso] <= tb[zona]) {
