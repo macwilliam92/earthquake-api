@@ -21,9 +21,9 @@ const getRandom = (index, masonry, floors) => {
 
   if (material === 3) {
     valor = (1
-      - Math.exp(((-1 * A3[piso]) * Math.pow((valale[posicion] / samax3[piso]), M3[piso]))));
+      - Math.exp(((-1 * A3[piso]) * Math.pow((valale[posicion] / samax3[piso]), M3[piso])))); // eslint-disable-line
   } else if (material === 2) {
-    valor = (1 - Math.exp(((-1 * A[piso]) * Math.pow((valale[posicion] / samax[piso]), M[piso]))));
+    valor = (1 - Math.exp(((-1 * A[piso]) * Math.pow((valale[posicion] / samax[piso]), M[piso])))); // eslint-disable-line
   }
 
   return Math.round(valor * 10000) / 10000;
@@ -60,20 +60,20 @@ const getVulnerabilityInd = (masonry, floors, zone) => {
     } else if (ta[zona] < T03[piso] && T03[piso] <= tb[zona]) {
       valorI = c[zona];
     } else {
-      valorI = Math.pow((tb[zona] / T03[piso]), r[zona]) * c[zona];
+      valorI = Math.pow((tb[zona] / T03[piso]), r[zona]) * c[zona]; // eslint-disable-line
     }
 
-    InD = (1 - Math.exp(((-1 * A3[piso]) * Math.pow((valorI / samax3[piso]), M3[piso]))));
+    InD = (1 - Math.exp(((-1 * A3[piso]) * Math.pow((valorI / samax3[piso]), M3[piso])))); // eslint-disable-line
   } else if (material === 2) {
     if (T0[piso] >= 0 && T0[piso] <= ta[zona]) {
       valorI = (a0[zona] + (c[zona] - a0[zona])) * (T0[piso] / ta[zona]);
     } else if (ta[zona] < T0[piso] && T03[piso] <= tb[zona]) {
       valorI = c[zona];
     } else {
-      valorI = Math.pow((tb[zona] / T0[piso]), r[zona]) * c[zona];
+      valorI = Math.pow((tb[zona] / T0[piso]), r[zona]) * c[zona]; // eslint-disable-line
     }
 
-    InD = (1 - Math.exp(((-1 * A[piso]) * Math.pow((valorI / samax[piso]), M[piso]))));
+    InD = (1 - Math.exp(((-1 * A[piso]) * Math.pow((valorI / samax[piso]), M[piso])))); // eslint-disable-line
   }
 
   return InD;
@@ -100,13 +100,13 @@ const getZona = (posicion, zone) => {
   } else if (ta[zona] < tiempo[posicion] && tiempo[posicion] <= tb[zona]) {
     valor = c[zona];
   } else {
-    valor = Math.pow((tb[zona] / tiempo[posicion]), r[zona]) * c[zona];
+    valor = Math.pow((tb[zona] / tiempo[posicion]), r[zona]) * c[zona]; // eslint-disable-line
   }
 
   return Math.round(valor * 10000) / 10000;
 };
 
-const vulnerabilityGraphService = (masonry, floors, zone) => {
+const vulnerabilityGraphService = (masonry, floors) => {
   const simulations = [];
   let simulationInitial = 0.1;
   const simulationStep = 0.1;

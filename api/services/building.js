@@ -9,11 +9,11 @@ const getRandom = (index, floor) => {
   let valor;
 
   if ((piso > 1) && (piso <= 5)) {
-    valor = (1 - Math.exp((36.20 * -1) * Math.pow(valale[posicion], 4.07)));
+    valor = (1 - Math.exp((36.20 * -1) * Math.pow(valale[posicion], 4.07))); // eslint-disable-line
   } else if ((piso > 5) && (piso <= 10)) {
-    valor = (1 - Math.exp((50.50 * -1) * Math.pow(valale[posicion], 3.6)));
+    valor = (1 - Math.exp((50.50 * -1) * Math.pow(valale[posicion], 3.6))); // eslint-disable-line
   } else if ((piso > 10) && (piso <= 15)) {
-    valor = (1 - Math.exp((18 * -1) * Math.pow(valale[posicion], 2.31)));
+    valor = (1 - Math.exp((18 * -1) * Math.pow(valale[posicion], 2.31))); // eslint-disable-line
   }
 
   return Math.round(valor * 10000) / 10000;
