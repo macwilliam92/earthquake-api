@@ -1,5 +1,7 @@
-import { vulnerabilityGraphService } from '../services/building';
+import { vulnerabilityGraphService, spectrumGraphService } from '../services/building';
 
 const getVulnerabilityGraphData = ({ floor }) => vulnerabilityGraphService(floor);
 
-export { getVulnerabilityGraphData };
+const getSpectrumGraphData = ({ zone }) => spectrumGraphService(zone);
+
+export { getVulnerabilityGraphData, getSpectrumGraphData };
